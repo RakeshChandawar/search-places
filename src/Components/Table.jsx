@@ -1,4 +1,9 @@
-export default function Table({ searchResults, startSearching }) {
+export default function Table({ 
+  searchResults,
+  startSearching,
+  currentPage,
+  itemsPerPage, 
+}) {
   return (
     <table>
       <thead>
@@ -12,7 +17,7 @@ export default function Table({ searchResults, startSearching }) {
         {searchResults.length > 0 ? (
           searchResults.map((result, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td>{itemsPerPage * (currentPage - 1) + index + 1}</td>
               <td>{result.city}</td>
               <td
                 style={{

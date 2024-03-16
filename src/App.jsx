@@ -44,6 +44,7 @@ export default function App() {
           countryIds: "IN",
           namePrefix: searchInput,
           limit: itemsPerPage,
+          offset: itemsPerPage * (currentPage - 1),
         },
         headers: {
           "x-rapidapi-host": import.meta.env.VITE_API_HOST,
@@ -71,7 +72,12 @@ export default function App() {
 
       {loading && <div className="spinner">Loading...</div>}
 
-      <Table searchResults={searchResults} startSearching={startSearching} />
+      <Table
+        searchResults={searchResults}
+        startSearching={startSearching}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+      />
 
       {!startSearching && searchResults.length > 0 && (
         <Pagination
